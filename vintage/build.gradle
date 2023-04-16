@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+test {
+    useJUnitPlatform {
+        includeEngines 'junit-vintage'
+        excludeEngines 'junit-jupiter'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation libs.bundles.junit
+}
+

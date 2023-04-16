@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    alias(libs.plugins.versions)
+    alias(libs.plugins.version.catalog.update)
+}
+
+group 'com.kousenit'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation libs.bundles.junit
+    testImplementation libs.bundles.mockito
+    testImplementation libs.assertj
+    testImplementation libs.jqwik
+    testImplementation libs.commons.validator
+}
+
+tasks.named('test') {
+    useJUnitPlatform {
+        excludeTags 'slow'
+    }
+    maxParallelForks = Runtime.runtime.availableProcessors() / 2 + 1
+}
+
